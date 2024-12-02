@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const { placeholder, modelValue } = defineProps<{ placeholder?: string; modelValue: string }>()
+const { placeholder, modelValue } = defineProps<{ placeholder?: string, modelValue: string }>()
 const emit = defineEmits<{
     (e: 'update', value: string): void
 }>();
@@ -8,13 +8,20 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="relative h-10 w-full min-w-[256px]">
-        <input class="input_base peer" placeholder=" " :value="modelValue"
-            @input="emit('update', ($event.target as HTMLInputElement).value)" />
-        <label v-show="!!placeholder" class="label_base before:content[' '] after:content[' ']">
-            {{ placeholder }}
-        </label>
-    </div>
+  <div class="relative h-10 w-full min-w-[256px]">
+    <input
+      class="input_base peer"
+      placeholder=" "
+      :value="modelValue"
+      @input="emit('update', ($event.target as HTMLInputElement).value)"
+    >
+    <label
+      v-show="!!placeholder"
+      class="label_base before:content[' '] after:content[' ']"
+    >
+      {{ placeholder }}
+    </label>
+  </div>
 </template>
 
 <style scoped>
