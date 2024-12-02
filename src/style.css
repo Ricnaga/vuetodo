@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Genos", sans-serif;
+  font-weight: 400;
+}
+
+body {
+  @apply h-screen bg-gradient-to-bl from-warning-200 via-warning-300 to-warning-400 p-4;
+}
