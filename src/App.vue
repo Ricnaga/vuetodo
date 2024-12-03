@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import CustomButton from './components/CustomButton.vue';
-import CustomCard from './components/CustomCard.vue';
-import CustomInput from './components/CustomInput.vue';
+import AppButton from './components/AppButton.vue';
+import AppCard from './components/AppCard.vue';
+import AppInput from './components/AppInput.vue';
 import { TodoStatus } from './todo.enum';
 import { TodoProps } from './todo.types';
 import TodoField from './components/TodoField.vue';
@@ -48,29 +48,30 @@ function handleEdit(id: string, description: string) {
       VueTodo
     </h1>
   </header>
-  <CustomCard class="mt-8 w-full max-w-4xl mx-auto grid">
+  <AppCard class="mt-8 w-full max-w-4xl mx-auto grid">
     <div class="grid gap-6">
       <div class="flex flex-col gap-2">
         <h3 class="text-primary-600 font-medium text-2xl">
           Adicionar tarefa
         </h3>
         <div class="flex gap-2">
-          <CustomInput
+          <AppInput
             v-model="textAdd"
             placeholder="Nova tarefa"
             @input="onInput"
           />
-          <CustomButton
-            rounded="full"
+          <AppButton
+            :is-disabled="!textAdd"
+            rounded="large"
             class="grid justify-self-end"
             @click="handleAdd"
           >
             +
-          </CustomButton>
+          </AppButton>
         </div>
       </div>
 
-      <div class="grid gap-2">
+      <div class="grid gap-4">
         <h3 class="text-2xl font-medium text-primary-600 tracking-wide mb-2">
           Tarefas
         </h3>
@@ -82,5 +83,5 @@ function handleEdit(id: string, description: string) {
         />
       </div>
     </div>
-  </CustomCard>
+  </AppCard>
 </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { TodoProps } from '../todo.types';
-import Button from './CustomButton.vue';
-import Input from './CustomInput.vue';
+import AppButton from './AppButton.vue';
+import AppInput from './AppInput.vue';
 
 const { todos } = defineProps<{ todos: Array<TodoProps> }>()
 const emit = defineEmits<{
@@ -42,37 +42,45 @@ function handleEdit(props: TodoProps) {
     v-for="todo in todos"
     v-else
     :key="todo.id"
-    class="flex gap-4 items-center"
+    class="flex flex-col md:flex-row gap-4 md:items-center"
   >
-    <input
-      type="checkbox"
-      @click="emit('status', todo.id, ($event.target as HTMLInputElement).checked)"
-    >
-    <div class="flex-1">
-      <p
-        v-if="!fieldRow.find(row => row.id === todo.id)"
-        :data-status="todo.status"
-        class="todo__description"
+    <div class="flex gap-2">
+      <input
+        type="checkbox"
+        @click="emit('status', todo.id, ($event.target as HTMLInputElement).checked)"
       >
-        {{
-          todo.description }}
-      </p>
+      <div class="flex-1">
+        <p
+          v-if="!fieldRow.find(row => row.id === todo.id)"
+          :data-status="todo.status"
+          class="todo__description"
+        >
+          {{
+            todo.description }}
+        </p>
 
-      <Input
-        v-else
-        :model-value="todo.description"
-        placeholder="Tarefa"
-        @update="description => onInput(description, todo)"
-      />
+        <AppInput
+          v-else
+          :model-value="todo.description"
+          placeholder="Tarefa"
+          @update="description => onInput(description, todo)"
+        />
+      </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-2 ml-auto">
-      <Button @click="handleEdit(todo)">
+    <div class="grid grid-cols-2 gap-2 justify-items-center md:ml-auto">
+      <AppButton
+        variant="outline"
+        @click="handleEdit(todo)"
+      >
         Editar
-      </Button>
-      <Button @click="emit('remove', todo.id)">
+      </AppButton>
+      <AppButton
+        color="error"
+        @click="emit('remove', todo.id)"
+      >
         Excluir
-      </Button>
+      </AppButton>
     </div>
   </div>
 </template>
