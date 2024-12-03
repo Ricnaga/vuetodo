@@ -3,6 +3,10 @@
 </div>
 
 <div align="center">
+  <img src="./mobile.jpg" alt="Capa do Projeto mobile" />
+</div>
+
+<div align="center">
 
 # **VueTodo**
 
